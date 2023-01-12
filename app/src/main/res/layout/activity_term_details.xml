@@ -17,8 +17,42 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hi!"/>
+                android:text="Term Name"/>
+            <EditText
+                android:id="@+id/termname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Name"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Term Start"/>
+            <EditText
+                android:id="@+id/termstart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Start Date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Term End"/>
+            <EditText
+                android:id="@+id/termend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="End Date"/>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/saveterm"
+                    android:text="Save"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
+
 
     </ScrollView>
 

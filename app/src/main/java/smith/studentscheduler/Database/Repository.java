@@ -72,6 +72,7 @@ public class Repository {
             e.printStackTrace();
         }
     }
+
     // Courses
     public List<Course> getAllCourses() {
         databaseExecutor.execute(() -> {
