@@ -62,7 +62,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             String name = current.getCourseName();
             holder.courseItemView.setText(name);
         } else {
-            holder.courseItemView.setText("No Term Name");
+            holder.courseItemView.setText("No Course Name");
         }
     }
 

@@ -5,54 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.TermDetails">
+
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Term Name"/>
-            <EditText
-                android:id="@+id/termname"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Term Name" />
+
+                <EditText
+                    android:id="@+id/termname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Name" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Name"/>
-            <TextView
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Term Start" />
+
+                <EditText
+                    android:id="@+id/termstart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Start Date" />
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Term Start"/>
-            <EditText
-                android:id="@+id/termstart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Start Date"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Term End"/>
+                android:text="Term End" />
+
             <EditText
                 android:id="@+id/termend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="End Date"/>
+                android:hint="End Date" />
+        </LinearLayout>
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <Button
+                    android:id="@+id/saveterm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/saveterm"
-                    android:text="Save"/>
+                    android:text="Save" />
             </androidx.appcompat.widget.LinearLayoutCompat>
-        </LinearLayout>
 
+        </LinearLayout>
 
     </ScrollView>
 
@@ -64,4 +93,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_add_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintTop_toBottomOf="@+id/scrollView"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/courserecycleview"
+        android:layout_width="409dp"
+        android:layout_height="373dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="301dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

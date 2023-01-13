@@ -10,10 +10,12 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import smith.studentscheduler.Database.Repository;
 import smith.studentscheduler.R;
+import smith.studentscheduler.entities.Course;
 import smith.studentscheduler.entities.Term;
 
 public class TermList extends AppCompatActivity {

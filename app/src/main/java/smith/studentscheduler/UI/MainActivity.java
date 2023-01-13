@@ -15,6 +15,7 @@ import smith.studentscheduler.entities.Course;
 import smith.studentscheduler.entities.Term;
 
 public class MainActivity extends AppCompatActivity {
+    public static int numAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
