@@ -37,7 +37,7 @@ public class TermDetails extends AppCompatActivity {
     final Calendar myCalendarStart = Calendar.getInstance();
     final Calendar myCalendarEnd = Calendar.getInstance();
     String name;
-//    String start;
+    //    String start;
 //    String end;
     int id;
     Term term;
@@ -57,7 +57,7 @@ public class TermDetails extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         editStart.setText(sdf.format(new Date()));
         editEnd.setText(sdf.format(new Date()));
-        id=getIntent().getIntExtra("id", -1);
+        id = getIntent().getIntExtra("id", -1);
         name = getIntent().getStringExtra("name");
 //        start = getIntent().getStringExtra("start");
 //        end = getIntent().getStringExtra("end");
@@ -66,7 +66,7 @@ public class TermDetails extends AppCompatActivity {
 
 //        editStart.setText(start);
 //        editEnd.setText(end);
-        repository=new Repository(getApplication());
+        repository = new Repository(getApplication());
         RecyclerView recyclerView = findViewById(R.id.courserecycleview);
         repository = new Repository(getApplication());
         final CourseAdapter courseAdapter = new CourseAdapter(this);
@@ -74,20 +74,19 @@ public class TermDetails extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<Course> filteredCourses = new ArrayList<>();
         for (Course c : repository.getAllCourses()) {
-            if(c.getCourseId() == id) filteredCourses.add(c);
+            if (c.getCourseId() == id) filteredCourses.add(c);
         }
         courseAdapter.setCourses(filteredCourses);
         Button button = findViewById(R.id.saveterm);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(id==-1){
-                    term= new Term(0, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
+                if (id == -1) {
+                    term = new Term(0, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.insert(term);
 //                    Toast.makeText(this, "Product is saved", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    term= new Term(id, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
+                } else {
+                    term = new Term(id, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.update(term);
 //                    Toast.makeText(this, "Product is updated", Toast.LENGTH_LONG).show();
 
@@ -103,7 +102,9 @@ public class TermDetails extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
+
 
     @Override
     protected void onResume() {
@@ -133,12 +134,10 @@ public class TermDetails extends AppCompatActivity {
                 for (Term term : repository.getAllTerms()) {
                     if (term.getTermId() == id) currentTerm = term;
                 }
-
                 numCourses = 0;
                 for (Course course : repository.getAllCourses()) {
                     if (course.getTermId() == id) ++numCourses;
                 }
-
                 if (numCourses == 0) {
                     repository.delete(currentTerm);
                     Toast.makeText(TermDetails.this, currentTerm.getTermName() + " was deleted", Toast.LENGTH_LONG).show();

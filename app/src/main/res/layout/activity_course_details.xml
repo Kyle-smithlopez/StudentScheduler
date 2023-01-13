@@ -9,7 +9,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="600dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Course Name" />
+                    android:text="Course Name:" />
 
                 <EditText
                     android:id="@+id/coursename"
@@ -44,13 +44,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Start Date" />
+                    android:text="Start Date:" />
 
                 <EditText
                     android:id="@+id/coursestart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="1/1/2023" />
+                    android:hint="1/1/2023"
+                    android:inputType="none" />
             </LinearLayout>
 
             <LinearLayout
@@ -61,13 +62,81 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="End Date" />
+                    android:text="End Date:" />
 
                 <EditText
                     android:id="@+id/courseend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="1/31/2023" />
+                    android:hint="1/31/2023"
+                    android:inputType="none" />
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content">-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status:" />
+            <EditText
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Pending" />
+        </LinearLayout>
+            <!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Course Instructor:" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name:" />
+
+                <EditText
+                    android:id="@+id/ciname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="John Doe" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact:" />
+
+                <EditText
+                    android:id="@+id/ciphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="123-456-7890" />
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact:" />
+
+                <EditText
+                    android:id="@+id/ciemail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="John.Doe@Wgu.com" />
             </LinearLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -82,26 +151,11 @@
                     android:text="Save" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date Picker" />
-
-                <EditText
-                    android:id="@+id/editdate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:hint="1/15/2023" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -113,21 +167,18 @@
                     android:layout_height="wrap_content"
                     android:hint="note" />
             </androidx.appcompat.widget.LinearLayoutCompat>
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <Spinner
                     android:id="@+id/spinner"
                     android:layout_width="409dp"
                     android:layout_height="wrap_content"
                     tools:layout_editor_absoluteX="1dp"
                     tools:layout_editor_absoluteY="373dp" />
-
             </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
-
-
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

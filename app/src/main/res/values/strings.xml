@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StudentScheduler</string>
+    <string name="app_name">Student Scheduler</string>
     <string name="share">Share</string>
     <string name="notify_start">Notify Start</string>
     <string name="notify_end">Notify End</string>

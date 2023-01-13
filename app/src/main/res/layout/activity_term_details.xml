@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Term Name" />
+                    android:text="Term Name:" />
 
                 <EditText
                     android:id="@+id/termname"
@@ -43,7 +43,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Term Start" />
+                    android:text="Term Start:" />
 
                 <EditText
                     android:id="@+id/termstart"
@@ -60,7 +60,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Term End" />
+                android:text="Term End:" />
 
             <EditText
                 android:id="@+id/termend"

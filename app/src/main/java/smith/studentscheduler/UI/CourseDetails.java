@@ -13,9 +13,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -72,6 +75,21 @@ public class CourseDetails extends AppCompatActivity {
 //        editStart.setText(start);
 //        editEnd.setText(end);
         repository = new Repository(getApplication());
+        Spinner spinner = findViewById(R.id.spinner);
+        ArrayAdapter<Term> termArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, repository.getAllTerms());
+        spinner.setAdapter(termArrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                editNote.setText(termArrayAdapter.getItem(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                editNote.setText("Nothing selected");
+            }
+        });
+
         Button button = findViewById(R.id.savecourse);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
