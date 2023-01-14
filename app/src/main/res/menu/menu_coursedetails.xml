@@ -11,5 +11,8 @@
     <item
         android:id="@+id/notifyend"
         android:title="@string/notify_end" />
+    <item
+        android:id="@+id/deletecourse"
+        android:title="@string/delete_course" />
 
 </menu>

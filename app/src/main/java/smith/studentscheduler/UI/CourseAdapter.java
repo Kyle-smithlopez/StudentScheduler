@@ -18,10 +18,15 @@ import smith.studentscheduler.entities.Course;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
     class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseItemView;
+        private final TextView courseItemView1;
+        private final TextView courseItemView2;
+
 
         private CourseViewHolder(View itemview) {
             super(itemview);
             courseItemView = itemview.findViewById(R.id.textViewcoursename);
+            courseItemView1 = itemview.findViewById(R.id.textViewcoursestart);
+            courseItemView2 = itemview.findViewById(R.id.textViewcourseend);
             itemview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -32,6 +37,11 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     intent.putExtra("name", current.getCourseName());
                     intent.putExtra("start", current.getStartDate());
                     intent.putExtra("end", current.getEndDate());
+                    intent.putExtra("status", current.getStatus());
+                    intent.putExtra("ciName", current.getCiName());
+                    intent.putExtra("ciPhone", current.getCiPhone());
+                    intent.putExtra("ciEmail", current.getCiEmail());
+                    intent.putExtra("termId", current.getTermId());
                     context.startActivity(intent);
                 }
             });
@@ -60,7 +70,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         if (mCourses != null) {
             Course current = mCourses.get(position);
             String name = current.getCourseName();
+            String start = current.getStartDate();
+            String end = current.getEndDate();
             holder.courseItemView.setText(name);
+            holder.courseItemView1.setText(start);
+            holder.courseItemView2.setText(end);
+
         } else {
             holder.courseItemView.setText("No Course Name");
         }

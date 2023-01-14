@@ -11,7 +11,7 @@ import smith.studentscheduler.DAO.TermDAO;
 import smith.studentscheduler.entities.Course;
 import smith.studentscheduler.entities.Term;
 
-@Database(entities = {Term.class, Course.class}, version = 1, exportSchema = false)
+@Database(entities = {Term.class, Course.class}, version = 2, exportSchema = false)
 public abstract class TermDatabaseBuilder extends RoomDatabase {
     public abstract TermDAO termDAO();
 

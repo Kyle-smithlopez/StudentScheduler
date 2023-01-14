@@ -11,11 +11,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,16 +36,14 @@ public class TermDetails extends AppCompatActivity {
     EditText editEnd;
     DatePickerDialog.OnDateSetListener start;
     DatePickerDialog.OnDateSetListener end;
-    final Calendar myCalendarStart = Calendar.getInstance();
-    final Calendar myCalendarEnd = Calendar.getInstance();
+    final Calendar myCalendar = Calendar.getInstance();
     String name;
-    //    String start;
-//    String end;
     int id;
     Term term;
     Term currentTerm;
     int numCourses;
     Repository repository;
+    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.US);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,28 +53,19 @@ public class TermDetails extends AppCompatActivity {
         editName = findViewById(R.id.termname);
         editStart = findViewById(R.id.termstart);
         editEnd = findViewById(R.id.termend);
-        String myFormat = "MM/dd/yy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         editStart.setText(sdf.format(new Date()));
         editEnd.setText(sdf.format(new Date()));
         id = getIntent().getIntExtra("id", -1);
         name = getIntent().getStringExtra("name");
-//        start = getIntent().getStringExtra("start");
-//        end = getIntent().getStringExtra("end");
         editName.setText(name);
-
-
-//        editStart.setText(start);
-//        editEnd.setText(end);
         repository = new Repository(getApplication());
         RecyclerView recyclerView = findViewById(R.id.courserecycleview);
-        repository = new Repository(getApplication());
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<Course> filteredCourses = new ArrayList<>();
         for (Course c : repository.getAllCourses()) {
-            if (c.getCourseId() == id) filteredCourses.add(c);
+            if (c.getTermId() == id) filteredCourses.add(c);
         }
         courseAdapter.setCourses(filteredCourses);
         Button button = findViewById(R.id.saveterm);
@@ -84,48 +75,115 @@ public class TermDetails extends AppCompatActivity {
                 if (id == -1) {
                     term = new Term(0, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.insert(term);
-//                    Toast.makeText(this, "Product is saved", Toast.LENGTH_LONG).show();
                 } else {
                     term = new Term(id, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.update(term);
-//                    Toast.makeText(this, "Product is updated", Toast.LENGTH_LONG).show();
-
                 }
+                Intent intent = new Intent(TermDetails.this, TermList.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
+
+        editStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Date date;
+                //get value from other screen,but I'm going to hard code it right now
+                String info = editStart.getText().toString();
+                try {
+                    myCalendar.setTime(sdf.parse(info));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                new DatePickerDialog(TermDetails.this, start, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        editEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Date date;
+                //get value from other screen,but I'm going to hard code it right now
+                String info = editEnd.getText().toString();
+                try {
+                    myCalendar.setTime(sdf.parse(info));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                new DatePickerDialog(TermDetails.this, end, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        start = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabelStart();
+            }
+        };
+        end = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabelEnd();
+            }
+        };
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton2);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TermDetails.this, CourseDetails.class);
+                intent.putExtra("termId", id);
                 startActivity(intent);
             }
         });
-
     }
 
+    private void updateLabelStart() {
+        editStart.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void updateLabelEnd() {
+        editEnd.setText(sdf.format(myCalendar.getTime()));
+    }
 
     @Override
     protected void onResume() {
 
         super.onResume();
         RecyclerView recyclerView = findViewById(R.id.courserecycleview);
-        final CourseAdapter partAdapter = new CourseAdapter(this);
-        recyclerView.setAdapter(partAdapter);
+        final CourseAdapter courseAdapter = new CourseAdapter(this);
+        recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<Course> filteredCourses = new ArrayList<>();
         for (Course p : repository.getAllCourses()) {
             if (p.getTermId() == id) filteredCourses.add(p);
         }
-        partAdapter.setCourses(filteredCourses);
+        courseAdapter.setCourses(filteredCourses);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.deletecourse, menu);
         return true;
     }
-
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

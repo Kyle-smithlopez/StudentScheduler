@@ -46,8 +46,8 @@ public class TermList extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        List<Term> allTerms=repository.getAllTerms();
-        RecyclerView recyclerView=findViewById(R.id.termrecycleview);
+        List<Term> allTerms = repository.getAllTerms();
+        RecyclerView recyclerView = findViewById(R.id.termrecycleview);
         final TermAdapter termAdapter = new TermAdapter(this);
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
