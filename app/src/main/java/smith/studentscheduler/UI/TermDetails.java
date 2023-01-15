@@ -38,6 +38,8 @@ public class TermDetails extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener end;
     final Calendar myCalendar = Calendar.getInstance();
     String name;
+    String startDate;
+    String endDate;
     int id;
     Term term;
     Term currentTerm;
@@ -57,7 +59,11 @@ public class TermDetails extends AppCompatActivity {
         editEnd.setText(sdf.format(new Date()));
         id = getIntent().getIntExtra("id", -1);
         name = getIntent().getStringExtra("name");
+        startDate = getIntent().getStringExtra("start");
+        endDate = getIntent().getStringExtra("end");
         editName.setText(name);
+        editStart.setText(startDate);
+        editEnd.setText(endDate);
         repository = new Repository(getApplication());
         RecyclerView recyclerView = findViewById(R.id.courserecycleview);
         final CourseAdapter courseAdapter = new CourseAdapter(this);
@@ -88,9 +94,7 @@ public class TermDetails extends AppCompatActivity {
         editStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Date date;
-                //get value from other screen,but I'm going to hard code it right now
                 String info = editStart.getText().toString();
                 try {
                     myCalendar.setTime(sdf.parse(info));
@@ -106,9 +110,7 @@ public class TermDetails extends AppCompatActivity {
         editEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Date date;
-                //get value from other screen,but I'm going to hard code it right now
                 String info = editEnd.getText().toString();
                 try {
                     myCalendar.setTime(sdf.parse(info));
@@ -126,7 +128,6 @@ public class TermDetails extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -138,7 +139,6 @@ public class TermDetails extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);

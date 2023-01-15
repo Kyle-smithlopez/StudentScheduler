@@ -53,6 +53,8 @@ public class CourseDetails extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
     String name;
     String status;
+    String startDate;
+    String endDate;
     String ciName;
     String ciEmail;
     String ciPhone;
@@ -81,6 +83,8 @@ public class CourseDetails extends AppCompatActivity {
         editEnd.setText(sdf.format(new Date()));
         id = getIntent().getIntExtra("id", -1);
         name = getIntent().getStringExtra("name");
+        startDate = getIntent().getStringExtra("start");
+        endDate = getIntent().getStringExtra("end");
         ciName = getIntent().getStringExtra("ciName");
         ciPhone = getIntent().getStringExtra("ciPhone");
         ciEmail = getIntent().getStringExtra("ciEmail");
@@ -90,8 +94,9 @@ public class CourseDetails extends AppCompatActivity {
         editCiName.setText(ciName);
         editCiPhone.setText(ciPhone);
         editCiEmail.setText(ciEmail);
+        editStart.setText(startDate);
+        editEnd.setText(endDate);
         repository = new Repository(getApplication());
-        //Added Recyclerview
         RecyclerView recyclerView = findViewById(R.id.assessmentrecyclerview);
         final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
         recyclerView.setAdapter(assessmentAdapter);
@@ -146,7 +151,7 @@ public class CourseDetails extends AppCompatActivity {
                 }
                 Intent intent = new Intent(CourseDetails.this, TermDetails.class);
                 intent.putExtra("id", termId);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
@@ -155,9 +160,7 @@ public class CourseDetails extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Date date;
-                //get value from other screen,but I'm going to hard code it right now
                 String info = editStart.getText().toString();
                 try {
                     myCalendar.setTime(sdf.parse(info));
@@ -174,9 +177,7 @@ public class CourseDetails extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Date date;
-                //get value from other screen,but I'm going to hard code it right now
                 String info = editEnd.getText().toString();
                 try {
                     myCalendar.setTime(sdf.parse(info));
@@ -193,8 +194,6 @@ public class CourseDetails extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
-
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -207,7 +206,6 @@ public class CourseDetails extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -215,7 +213,6 @@ public class CourseDetails extends AppCompatActivity {
             }
         };
 
-        //WIP
         FloatingActionButton fab = findViewById(R.id.floatingActionButton3);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -265,15 +262,14 @@ public class CourseDetails extends AppCompatActivity {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT, editNote.getText().toString());
-                sendIntent.putExtra(Intent.EXTRA_TITLE, "Message Title");
+                sendIntent.putExtra(Intent.EXTRA_TITLE, "Course Notes:");
                 sendIntent.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
                 return true;
             case R.id.notifystart:
                 String dateFromScreen = editStart.getText().toString();
-//                String myFormat = "MM/dd/yy";
-//                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                String nameFromScreen = editName.getText().toString();
                 Date myStartDate = null;
                 try {
                     myStartDate = sdf.parse(dateFromScreen);
@@ -282,15 +278,14 @@ public class CourseDetails extends AppCompatActivity {
                 }
                 Long trigger = myStartDate.getTime();
                 Intent intent = new Intent(CourseDetails.this, MyReceiver.class);
-                intent.putExtra("key", dateFromScreen + " should trigger");
+                intent.putExtra("key", nameFromScreen + " is starting " + dateFromScreen );
                 PendingIntent sender = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
                 return true;
             case R.id.notifyend:
                 String dateFromScreen2 = editEnd.getText().toString();
-//                String myFormat = "MM/dd/yy";
-//                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                String nameFromScreen2 = editName.getText().toString();
                 Date myEndDate = null;
                 try {
                     myEndDate = sdf.parse(dateFromScreen2);
@@ -299,7 +294,7 @@ public class CourseDetails extends AppCompatActivity {
                 }
                 Long trigger2 = myEndDate.getTime();
                 Intent intent2 = new Intent(CourseDetails.this, MyReceiver.class);
-                intent2.putExtra("key", dateFromScreen2 + " should trigger");
+                intent2.putExtra("key", nameFromScreen2 + " is ending " + dateFromScreen2);
                 PendingIntent sender2 = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.numAlert, intent2, PendingIntent.FLAG_IMMUTABLE);
                 AlarmManager alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 alarmManager2.set(AlarmManager.RTC_WAKEUP, trigger2, sender2);
@@ -309,16 +304,8 @@ public class CourseDetails extends AppCompatActivity {
                 for (Course course : repository.getAllCourses()) {
                     if (course.getCourseId() == id) currentCourse = course;
                 }
-//                numCourses = 0;
-//                for (Course course : repository.getAllCourses()) {
-//                    if (course.getTermId() == id) ++numCourses;
-//                }
-//                if (numCourses == 0) {
                 repository.delete(currentCourse);
                 Toast.makeText(CourseDetails.this, currentCourse.getCourseName() + " was deleted", Toast.LENGTH_LONG).show();
-//                } else {
-//                    Toast.makeText(TermDetails.this, "Can't delete a product with parts", Toast.LENGTH_LONG).show();
-//                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

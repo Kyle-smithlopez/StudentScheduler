@@ -21,7 +21,6 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         private final TextView assessmentItemView2;
         private final TextView assessmentItemView3;
 
-
         private AssessmentViewHolder(View itemview) {
             super(itemview);
             assessmentItemView = itemview.findViewById(R.id.textViewassessmenttitle);
@@ -77,7 +76,6 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
             holder.assessmentItemView.setText("No Assessment Title");
         }
     }
-
 
     @Override
     public int getItemCount() {
