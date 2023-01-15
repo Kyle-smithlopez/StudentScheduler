@@ -8,10 +8,11 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_width="413dp"
+        android:layout_height="446dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,30 +72,32 @@
                     android:hint="1/31/2023"
                     android:inputType="none" />
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <!--            <androidx.appcompat.widget.LinearLayoutCompat-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content">-->
-            <TextView
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Status:" />
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <Spinner
-                    android:id="@+id/progresspinner"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                android:orientation="horizontal">
+                <!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content">-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status:" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-        </LinearLayout>
+                    <Spinner
+                        android:id="@+id/progresspinner"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </LinearLayout>
             <!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
-
 
 
             <TextView
@@ -130,10 +133,12 @@
                     android:layout_height="wrap_content"
                     android:hint="123-456-7890" />
             </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -158,6 +163,12 @@
                     android:text="Save" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Optional Note:" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -188,4 +199,24 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/assessmentrecyclerview"
+        android:layout_width="412dp"
+        android:layout_height="161dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

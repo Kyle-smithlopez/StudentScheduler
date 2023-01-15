@@ -5,5 +5,5 @@
     <string name="notify_end">Notify End</string>
     <string name="channel_name">StudentChannel</string>
     <string name="channel_description">Notifications for Student Scheduler</string>
-    <string name="delete_course">Delete Course</string>
+    <string name="delete">Delete</string>
 </resources>

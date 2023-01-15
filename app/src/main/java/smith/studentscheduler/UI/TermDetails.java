@@ -200,7 +200,7 @@ public class TermDetails extends AppCompatActivity {
                     repository.delete(currentTerm);
                     Toast.makeText(TermDetails.this, currentTerm.getTermName() + " was deleted", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(TermDetails.this, "Can't delete a product with parts", Toast.LENGTH_LONG).show();
+                    Toast.makeText(TermDetails.this, "Can't delete a term with courses", Toast.LENGTH_LONG).show();
                 }
                 return true;
         }

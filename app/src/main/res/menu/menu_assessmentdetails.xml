@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/share"
-        android:title="@string/share" />
+<!--    <item-->
+<!--        android:id="@+id/share"-->
+<!--        android:title="@string/share" />-->
     <item
         android:id="@+id/notifystart"
         android:title="@string/notify_start" />
@@ -12,7 +12,6 @@
         android:id="@+id/notifyend"
         android:title="@string/notify_end" />
     <item
-        android:id="@+id/deletecourse"
+        android:id="@+id/deleteassessment"
         android:title="@string/delete" />
-
 </menu>
