@@ -15,9 +15,10 @@ public class Course {
     private String ciName;
     private String ciPhone;
     private String ciEmail;
+    private String note;
     private int termId;
 
-    public Course(int courseId, String courseName, String startDate, String endDate, String status, String ciName, String ciPhone, String ciEmail, int termId) {
+    public Course(int courseId, String courseName, String startDate, String endDate, String status, String ciName, String ciPhone, String ciEmail, String note, int termId) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.startDate = startDate;
@@ -27,6 +28,7 @@ public class Course {
         this.ciPhone = ciPhone;
         this.ciEmail = ciEmail;
         this.termId = termId;
+        this.note = note;
     }
 
     public Course() {
@@ -102,5 +104,13 @@ public class Course {
 
     public void setCiEmail(String ciEmail) {
         this.ciEmail = ciEmail;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

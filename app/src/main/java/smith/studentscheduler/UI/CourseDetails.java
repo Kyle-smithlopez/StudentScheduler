@@ -58,6 +58,7 @@ public class CourseDetails extends AppCompatActivity {
     String ciName;
     String ciEmail;
     String ciPhone;
+    String note;
     int id;
     int termId;
     Course course;
@@ -65,6 +66,7 @@ public class CourseDetails extends AppCompatActivity {
     Repository repository;
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.US);
     String[] options = {"Completed", "In Progress", "Dropped", "Planned to take"};
+    private boolean spinnerSelected = false;
 
 
     @Override
@@ -90,13 +92,16 @@ public class CourseDetails extends AppCompatActivity {
         ciEmail = getIntent().getStringExtra("ciEmail");
         termId = getIntent().getIntExtra("termId", -1);
         status = getIntent().getStringExtra("status");
+        note = getIntent().getStringExtra("note");
         editName.setText(name);
         editCiName.setText(ciName);
         editCiPhone.setText(ciPhone);
         editCiEmail.setText(ciEmail);
         editStart.setText(startDate);
         editEnd.setText(endDate);
+        editNote.setText(note);
         repository = new Repository(getApplication());
+
         RecyclerView recyclerView = findViewById(R.id.assessmentrecyclerview);
         final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
         recyclerView.setAdapter(assessmentAdapter);
@@ -122,37 +127,34 @@ public class CourseDetails extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+//        Spinner spinner = findViewById(R.id.spinner);
+//        ArrayAdapter<Term> termArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, repository.getAllTerms());
+//        spinner.setAdapter(termArrayAdapter);
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                    editNote.setText(termArrayAdapter.getItem(i).toString());
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//                editNote.setText("");
+//            }
+//        });
 
-        Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<Term> termArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, repository.getAllTerms());
-        spinner.setAdapter(termArrayAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                editNote.setText(termArrayAdapter.getItem(i).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                editNote.setText("Nothing selected");
-            }
-        });
 
         Button button = findViewById(R.id.savecourse);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (id == -1) {
-                    course = new Course(0, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), status, editCiName.getText().toString(), editCiPhone.getText().toString(), editCiEmail.getText().toString(), termId);
+                    course = new Course(0, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), status, editCiName.getText().toString(), editCiPhone.getText().toString(), editCiEmail.getText().toString(), editNote.getText().toString(), termId);
                     repository.insert(course);
                 } else {
-                    course = new Course(id, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), status, editCiName.getText().toString(), editCiPhone.getText().toString(), editCiEmail.getText().toString(), termId);
+                    course = new Course(id, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString(), status, editCiName.getText().toString(), editCiPhone.getText().toString(), editCiEmail.getText().toString(), editNote.getText().toString(), termId);
                     repository.update(course);
                 }
-                Intent intent = new Intent(CourseDetails.this, TermDetails.class);
-                intent.putExtra("id", termId);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -199,7 +201,9 @@ public class CourseDetails extends AppCompatActivity {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabelStart();
             }
-        };
+        }
+
+        ;
 
         end = new DatePickerDialog.OnDateSetListener() {
 
@@ -211,7 +215,9 @@ public class CourseDetails extends AppCompatActivity {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabelEnd();
             }
-        };
+        }
+
+        ;
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton3);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -278,7 +284,7 @@ public class CourseDetails extends AppCompatActivity {
                 }
                 Long trigger = myStartDate.getTime();
                 Intent intent = new Intent(CourseDetails.this, MyReceiver.class);
-                intent.putExtra("key", nameFromScreen + " is starting " + dateFromScreen );
+                intent.putExtra("key", nameFromScreen + " is starting " + dateFromScreen);
                 PendingIntent sender = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
@@ -311,5 +317,3 @@ public class CourseDetails extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
-// Need to figure out how to populate date picker with date.

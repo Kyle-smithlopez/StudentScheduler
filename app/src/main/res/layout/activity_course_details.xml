@@ -8,11 +8,11 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="413dp"
-        android:layout_height="446dp"
+        android:layout_width="391dp"
+        android:layout_height="393dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-3dp">
+        tools:layout_editor_absoluteX="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -179,19 +179,19 @@
                     android:id="@+id/editnote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="note" />
+                    android:hint="Enter a Note" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="409dp"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="373dp" />
+                <!--                <Spinner-->
+                <!--                    android:id="@+id/spinner"-->
+                <!--                    android:layout_width="409dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    tools:layout_editor_absoluteX="1dp"-->
+                <!--                    tools:layout_editor_absoluteY="373dp" />-->
             </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
     </ScrollView>
@@ -207,8 +207,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/assessmentrecyclerview"
-        android:layout_width="412dp"
-        android:layout_height="161dp"
+        android:layout_width="409dp"
+        android:layout_height="154dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

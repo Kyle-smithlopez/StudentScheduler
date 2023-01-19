@@ -97,8 +97,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/courserecycleview"
-        android:layout_width="730dp"
-        android:layout_height="544dp"
+        android:layout_width="798dp"
+        android:layout_height="558dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/scrollView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

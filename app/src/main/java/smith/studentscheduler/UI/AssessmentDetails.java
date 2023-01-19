@@ -98,10 +98,7 @@ public class AssessmentDetails extends AppCompatActivity {
                     assessment = new Assessment(id, editTitle.getText().toString(), type, editStart.getText().toString(), editEnd.getText().toString(), courseId);
                     repository.update(assessment);
                 }
-                Intent intent = new Intent(AssessmentDetails.this, CourseDetails.class);
-                intent.putExtra("id", courseId);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                finish();
             }
         });
 

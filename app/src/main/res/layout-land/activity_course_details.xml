@@ -8,11 +8,11 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="413dp"
-        android:layout_height="446dp"
+        android:layout_width="321dp"
+        android:layout_height="412dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-3dp">
+        tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,6 +35,13 @@
                     android:layout_height="wrap_content"
                     android:hint="C196" />
 
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Optional Note:" />
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -53,6 +60,22 @@
                     android:layout_height="wrap_content"
                     android:hint="1/1/2023"
                     android:inputType="none" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit Note:" />
+
+                    <EditText
+                        android:id="@+id/editnote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter a Note" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </LinearLayout>
 
             <LinearLayout
@@ -77,9 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <!--            <androidx.appcompat.widget.LinearLayoutCompat-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="wrap_content">-->
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,8 +118,6 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </LinearLayout>
-            <!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
-
 
             <TextView
                 android:id="@+id/textView3"
@@ -148,54 +167,33 @@
                     android:id="@+id/ciemail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="John.Doe@Wgu.com" />
+                    android:hint="John.Doe@wgu.edu" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/savecourse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text="Save" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </LinearLayout>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/savecourse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Save" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Optional Note:" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit Note:" />
-
-                <EditText
-                    android:id="@+id/editnote"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="note" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="409dp"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="373dp" />
+                <!--                <Spinner-->
+                <!--                    android:id="@+id/spinner"-->
+                <!--                    android:layout_width="409dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    tools:layout_editor_absoluteX="1dp"-->
+                <!--                    tools:layout_editor_absoluteY="373dp" />-->
             </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
     </ScrollView>
@@ -211,12 +209,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/assessmentrecyclerview"
-        android:layout_width="412dp"
-        android:layout_height="161dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="492dp"
+        android:layout_height="131dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@ import smith.studentscheduler.entities.Assessment;
 import smith.studentscheduler.entities.Course;
 import smith.studentscheduler.entities.Term;
 
-@Database(entities = {Term.class, Course.class, Assessment.class}, version = 4, exportSchema = false)
+@Database(entities = {Term.class, Course.class, Assessment.class}, version = 5, exportSchema = false)
 public abstract class TermDatabaseBuilder extends RoomDatabase {
     public abstract TermDAO termDAO();
 

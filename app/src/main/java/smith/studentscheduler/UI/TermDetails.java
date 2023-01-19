@@ -85,9 +85,7 @@ public class TermDetails extends AppCompatActivity {
                     term = new Term(id, editName.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
                     repository.update(term);
                 }
-                Intent intent = new Intent(TermDetails.this, TermList.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -169,6 +167,18 @@ public class TermDetails extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
+
+//        name = getIntent().getStringExtra("name");
+//        startDate = getIntent().getStringExtra("start");
+//        endDate = getIntent().getStringExtra("end");
+        editName.setText(name);
+        editStart.setText(startDate);
+        editEnd.setText(endDate);
+
+        // Update the UI fields with the correct data
+//        editName.setText(term.getTermName());
+//        editStart.setText(term.getStartDate());
+//        editEnd.setText(term.getEndDate());
         RecyclerView recyclerView = findViewById(R.id.courserecycleview);
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
